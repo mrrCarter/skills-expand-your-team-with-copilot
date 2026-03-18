@@ -1,0 +1,25 @@
+name: Omar Gate PR Review
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+  # Required when using SENTINELAYER_TOKEN managed mode (OIDC authentication)
+  id-token: write
+
+jobs:
+  security-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Omar Gate
+        uses: mrrCarter/sentinelayer-v1-action@e67612a6aa393b750b5f8c40ce094c75b7b9145f # v1.3.4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          sentinelayer_token: ${{ secrets.SENTINELAYER_TOKEN }}
+          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
