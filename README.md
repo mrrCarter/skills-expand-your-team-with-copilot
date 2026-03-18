@@ -12,7 +12,7 @@ Remember, it's self-paced so feel free to take a break! ☕️
 
 ## Omar Gate setup
 
-This repository now includes `.github/workflows/omar-gate.yml` to run Omar Gate on every pull request.
+This repository now includes `.github/workflows/omar-gate.yml` to run Omar Gate on every pull request for automated security review.
 
 To complete setup in repository settings, add at least one of these GitHub Actions secrets:
 

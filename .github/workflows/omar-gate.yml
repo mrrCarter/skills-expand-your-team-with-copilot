@@ -7,6 +7,7 @@ permissions:
   contents: read
   pull-requests: write
   checks: write
+  # Required when using SENTINELAYER_TOKEN managed mode (OIDC authentication)
   id-token: write
 
 jobs:
@@ -17,9 +18,8 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Omar Gate
-        uses: mrrCarter/sentinelayer-v1-action@v1
+        uses: mrrCarter/sentinelayer-v1-action@e67612a6aa393b750b5f8c40ce094c75b7b9145f # v1.3.4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           sentinelayer_token: ${{ secrets.SENTINELAYER_TOKEN }}
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
-          sentinelayer_managed_llm: ${{ secrets.OPENAI_API_KEY == '' && secrets.SENTINELAYER_TOKEN != '' }}
