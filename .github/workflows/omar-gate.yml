@@ -1,0 +1,25 @@
+name: Omar Gate PR Review
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+  id-token: write
+
+jobs:
+  security-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Omar Gate
+        uses: mrrCarter/sentinelayer-v1-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          sentinelayer_token: ${{ secrets.SENTINELAYER_TOKEN }}
+          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+          sentinelayer_managed_llm: ${{ secrets.OPENAI_API_KEY == '' && secrets.SENTINELAYER_TOKEN != '' }}
